@@ -1,7 +1,7 @@
 /* Packet SMSG_LOGINRESULT */
 
 packet.ReadByte("LoginResult");
-packet.ReadShort("??");
+packet.ReadShort("BlockSize");
 packet.ReadByte("??");
 packet.ReadByte("??");
 packet.ReadInt("??");
