@@ -1,4 +1,7 @@
 /* Packet 2054 */
-/* Création de perso */
+/* Création de perso : Resultat de la création */
 
-packet.ReadByte("??");
+//0 = Creation OK
+//10 = Nom déjà pris
+
+packet.ReadByte("Result");
