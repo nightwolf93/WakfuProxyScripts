@@ -10,5 +10,5 @@ packet.ReadByte("SkinColorFactor");
 packet.ReadByte("HairColorFactor")
 packet.ReadByte("Cloth")
 packet.ReadByte("Face")
-packet.ReadShort("Title");
+packet.ReadShort("Breed");
 packet.ReadString("Name");
