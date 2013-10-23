@@ -2,22 +2,35 @@
 // 13 = Need to define pseudo
 
 var result = packet.ReadByte("LoginResult");
-if(result == 0){
-	packet.ReadShort("BlockSize");
-	packet.ReadByte("??");
-	packet.ReadByte("??");
-	packet.ReadInt("??");
-	packet.ReadLong("AccountID");
-	packet.ReadByte("??");
+
+if (result == 5)
+{
+	packet.Log("Account is banned");
+	
+	if (packet.Length() >= 5)
+		packet.ReadInt("BanDelay");
+}
+else if (result == 0)
+{
+	if (packet.Length() < 3)
+		return;
+	
+	var size = packet.ReadShort("BlockSize");
+
+	//if (packet.Length() != (size + 3))
+	//	return;
+
+	packet.ReadByte("BlockNumber");
+	packet.ReadByte("BlockId");
+	packet.ReadInt("BlockStart");
+	packet.ReadByte("Unk");
+	packet.ReadLong("AccountId");
+	packet.ReadByte("Unk2");
 	packet.ReadLong("SubscribeTime");
 	packet.ReadInt("IsAdmin");
-	for(var i = 33; i < 50; i++){
-		packet.ReadByte("AccountData[" + i + "]");
-	}
-	packet.ReadString("CharName");
-	packet.ReadString("??");
-	packet.ReadShort("??");
+
+	packet.ReadString("Pseudo");
+	packet.ReadString("Unk3");
 }
-else{
-	packet.Log('Identifiant invalide ou compte invalide !');
-}
+else
+	packet.Log("Erreur lors de la connexion : " + result);
