@@ -37,7 +37,7 @@ function parseXp(){
 		packet.ReadByte("??[" + i + "]");
 		packet.ReadShort("??[" + i + "]");
 	}
-	var idc = packet.ReadShort("??");
+	packet.ReadShort("Caract");
 	for(var i = 0; i < idc; i++){
 		packet.ReadByte("??[" + i + "]");
 		packet.ReadShort("??[" + i + "]");
@@ -47,7 +47,10 @@ function parseXp(){
 
 var count = packet.ReadByte("CharactersCount");
 for(var i = 0; i < count; i++){
-	packet.Log("=> Parse character [" + i + "]");
+	packet.Log("================================");
+	packet.Log("=> 		Parse character [" + i + "]");
+	packet.Log("================================");
+	
 	packet.ReadShort("Mark?");
 	packet.ReadByte("BlockType?");
 	parseID();
